@@ -17,11 +17,7 @@ function Main({ weatherData }) {
               return item.weather === weatherData.type;
             })
             .map((item) => {
-              return (
-                <li key={item._id}>
-                  <ItemCard item={item} />
-                </li>
-              );
+              return <ItemCard key={item._id} item={item} />;
             })}
         </ul>
       </section>
