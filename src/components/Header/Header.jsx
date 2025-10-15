@@ -2,7 +2,7 @@ import "./Header.css";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.svg";
 
-function Header() {
+function Header({ handleAddClick }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -12,7 +12,8 @@ function Header() {
       <img src={logo} alt="logo" className="header__logo" />
       <p className="header__date-and-location">{currentDate}, New York</p>
       <button
-        type="submit"
+        onClick={handleAddClick}
+        type="button"
         aria-label="Add Clothes Button"
         className="header__add-clothes-btn"
       >

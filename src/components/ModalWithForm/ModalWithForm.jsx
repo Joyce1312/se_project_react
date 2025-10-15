@@ -1,12 +1,21 @@
 import "./ModalWithForm.css";
 
-function ModalWithForm({ children, buttonText, title }) {
+function ModalWithForm({
+  children,
+  buttonText,
+  title,
+  activeModal,
+  handleCloseCLick,
+}) {
   return (
     <>
-      <div className="modal">
+      <div
+        className={`modal ${activeModal === "add-garment" && "modal_opened"}`}
+      >
         <div className="modal__container">
           <h2 className="modal__title">{title}</h2>
           <button
+            onClick={handleCloseCLick}
             className="modal__close-btn"
             type="button"
             aria-label="close button"
