@@ -68,7 +68,7 @@ This project was built based on a Figma design. You can view the original protot
 ## Live Demo
 
 You can view the deployed project here:  
-[Weather Wardrobe on GitHub Pages]()
+[Weather Wardrobe on GitHub Pages](https://joyce1312.github.io/se_project_react/)
 
 ---
 
