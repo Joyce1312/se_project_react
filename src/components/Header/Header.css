@@ -2,6 +2,13 @@
   display: flex;
   align-items: center;
   padding: 32px 0 28px;
+  position: relative;
+  justify-content: space-between;
+}
+
+.header__logo-container {
+  display: flex;
+  align-items: center;
 }
 
 .header__logo {
@@ -17,8 +24,16 @@
   line-height: 1.2;
 }
 
+.header__mobile-menu {
+  display: flex;
+}
+
+.header__close-btn {
+  display: none;
+}
+
 .header__add-clothes-btn {
-  margin: 0 20px 0 auto;
+  margin: 0 8px 0 0;
   font-weight: 700;
   font-size: 20px;
   line-height: 1.2;
@@ -38,4 +53,88 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 1;
+}
+
+.header__mobile-menu-btn {
+  position: absolute;
+  top: 18px;
+  right: 0;
+  height: 44px;
+  width: 44px;
+  background: #fff url(../../assets/mobile-menu.svg) no-repeat center / 28px
+    12px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0px 2px 8px 0px #0000001a;
+  display: none;
+}
+
+@media screen and (max-width: 627px) {
+  .header {
+    padding: 18px 0 16px;
+  }
+
+  .header__logo-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+  }
+
+  .header__logo {
+    margin: 0;
+  }
+
+  .header__date-and-location {
+    white-space: nowrap;
+  }
+
+  .header__mobile-menu_active {
+    background-color: #fff;
+    width: 100%;
+    z-index: 2;
+    position: absolute;
+    top: 16px;
+    flex-direction: column-reverse;
+    box-shadow: 0px 2px 8px 0px #0000001a;
+    border-radius: 10px;
+    height: 208px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .header__close-btn_active {
+    height: 21px;
+    width: 21px;
+    display: block;
+    background: transparent url(../../assets/close-btn-black.svg) no-repeat
+      center / 20px 20px;
+    position: absolute;
+    top: 11px;
+    right: 11.39px;
+    border: none;
+    padding: 0;
+  }
+
+  .header__add-clothes-btn {
+    display: none;
+    margin: 0;
+  }
+
+  .header__user-container {
+    display: none;
+    margin: 0 0 31px;
+  }
+
+  .header__add-clothes-btn_active {
+    display: block;
+  }
+
+  .header__user-container_active {
+    display: flex;
+    justify-content: center;
+  }
+
+  .header__mobile-menu-btn {
+    display: block;
+  }
 }
