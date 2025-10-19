@@ -25,10 +25,6 @@ function Header({ handleAddClick, weatherData }) {
           {currentDate}, {weatherData.city}
         </p>
       </div>
-      {/* <img src={logo} alt="logo" className="header__logo" />
-      <p className="header__date-and-location">
-        {currentDate}, {weatherData.city}
-      </p> */}
       <div
         className={`header__mobile-menu ${
           isMobileMenuOpened ? "header__mobile-menu_active" : ""
@@ -59,24 +55,6 @@ function Header({ handleAddClick, weatherData }) {
           <img src={avatar} alt="Terrence Tegegne" className="header__avatar" />
         </div>
       </div>
-      {/* <button
-        onClick={handleAddClick}
-        type="button"
-        aria-label="Add Clothes Button"
-        className={`header__add-clothes-btn ${
-          isMobileMenuOpened ? "header__add-clothes-btn_active" : ""
-        }`}
-      >
-        + Add Clothes
-      </button>
-      <div
-        className={`header__user-container ${
-          isMobileMenuOpened ? "header__user-container_active" : ""
-        }`}
-      >
-        <p className="header__username">Terrence Tegegne</p>
-        <img src={avatar} alt="Terrence Tegegne" className="header__avatar" />
-      </div> */}
       <button
         onClick={toggleMobileMenu}
         className="header__mobile-menu-btn"

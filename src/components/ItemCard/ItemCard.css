@@ -4,6 +4,7 @@
   overflow: hidden;
   position: relative;
   width: 323px;
+  height: 323px;
   display: flex;
   justify-content: center;
 }
@@ -26,4 +27,15 @@
   object-fit: cover;
   height: 100%;
   width: 100%;
+}
+
+@media screen and (max-width: 627px) {
+  .card {
+    width: 164px;
+    height: 164px;
+  }
+
+  .card__title {
+    top: 7px;
+  }
 }

@@ -1,13 +1,15 @@
 .footer {
   display: flex;
   justify-content: space-between;
-  margin: 85px 0 0;
+  margin: 0;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  padding: 171px 0 0;
 }
 
-.footer__author {
-  margin: 0 0 24px;
-}
-
-.footer__year {
-  margin: 0 0 24px;
+@media screen and (max-width: 627px) {
+  .footer {
+    padding: 147px 0 0;
+  }
 }

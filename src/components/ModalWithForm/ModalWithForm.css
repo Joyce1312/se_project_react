@@ -129,3 +129,30 @@
 .modal__submit:hover {
   background-color: #00000099;
 }
+
+@media screen and (max-width: 627px) {
+  .modal_type_add-garment {
+    align-items: flex-end;
+  }
+
+  .modal__container_type_add-garment {
+    border-radius: 12px 12px 0 0;
+    max-width: none;
+    width: 100vw;
+  }
+  .modal__close-btn {
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    height: 20px;
+    width: 20px;
+    background: url(../../assets/close-btn-black.svg) no-repeat center / 20px
+      20px;
+    border: none;
+  }
+
+  .modal__submit {
+    max-width: none;
+    background-color: #0000004d;
+  }
+}
