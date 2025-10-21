@@ -1,6 +1,6 @@
 import "./ItemModal.css";
 
-function ItemModal({ activeModal, card, handleCloseCLick }) {
+function ItemModal({ activeModal, card, handleCloseClick }) {
   return (
     <div
       className={`modal modal_type_preview ${
@@ -9,7 +9,7 @@ function ItemModal({ activeModal, card, handleCloseCLick }) {
     >
       <div className="modal__container modal__container_type_preview">
         <button
-          onClick={handleCloseCLick}
+          onClick={handleCloseClick}
           className="modal__close-btn modal__close-btn_type_preview"
           aria-label="Close Preview Button"
           type="button"

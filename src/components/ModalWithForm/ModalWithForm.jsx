@@ -5,7 +5,7 @@ function ModalWithForm({
   buttonText,
   title,
   activeModal,
-  handleCloseCLick,
+  handleCloseClick,
 }) {
   return (
     <>
@@ -17,7 +17,7 @@ function ModalWithForm({
         <div className="modal__container modal__container_type_add-garment">
           <h2 className="modal__title">{title}</h2>
           <button
-            onClick={handleCloseCLick}
+            onClick={handleCloseClick}
             className="modal__close-btn"
             type="button"
             aria-label="close button"
