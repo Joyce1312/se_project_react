@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Header.css";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.svg";
 
@@ -36,6 +37,7 @@ function Header({ handleAddClick, weatherData }) {
             isMobileMenuOpened ? "header__close-btn_active" : ""
           }`}
         ></button>
+        <ToggleSwitch />
         <button
           onClick={handleAddClick}
           type="button"
