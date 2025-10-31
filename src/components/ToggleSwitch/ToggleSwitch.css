@@ -36,18 +36,14 @@
   line-height: 1;
 }
 
+.toggle-switch__text_active {
+  color: #fff;
+}
+
 .toggle-switch__text_F {
   left: 9px;
 }
 
-.toggle-switch__text_F-active {
-  color: #fff;
-}
-
 .toggle-switch__text_C {
   right: 9px;
-}
-
-.toggle-switch__text_C-active {
-  color: #fff;
 }
