@@ -9,6 +9,7 @@ import ItemModal from "../ItemModal/ItemModal.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import { coordinates, APIkey } from "../../utils/constants.js";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
+import { defaultClothingItems } from "../../utils/constants";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -51,6 +53,21 @@ function App() {
       .catch(console.error);
   }, []);
 
+  const onAddItem = (inputValues, handleReset) => {
+    const newCardData = {
+      name: inputValues.name,
+      link: inputValues.link,
+      weather: inputValues.weatherType,
+    };
+    setClothingItems([...clothingItems, newCardData]);
+    handleReset({
+      name: "",
+      link: "",
+      weather: "",
+    });
+    closeActiveModal();
+  };
+
   return (
     <div className="page">
       <div className="page__content">
@@ -65,6 +82,7 @@ function App() {
                 <Main
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
                 />
               }
             />
@@ -76,6 +94,7 @@ function App() {
       <AddItemModal
         activeModal={activeModal}
         handleCloseClick={closeActiveModal}
+        onAddItem={onAddItem}
       />
       <ItemModal
         activeModal={activeModal}

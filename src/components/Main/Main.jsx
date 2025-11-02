@@ -2,10 +2,9 @@ import "./Main.css";
 import { useContext } from "react";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard.jsx";
-import { defaultClothingItems } from "../../utils/constants";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
 
-function Main({ weatherData, handleCardClick }) {
+function Main({ weatherData, handleCardClick, clothingItems }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   return (
     <main>
@@ -16,7 +15,7 @@ function Main({ weatherData, handleCardClick }) {
           {currentTemperatureUnit} / You may want to wear:
         </p>
         <ul className="cards__list">
-          {defaultClothingItems
+          {clothingItems
             .filter((item) => {
               return item.weather === weatherData.type;
             })

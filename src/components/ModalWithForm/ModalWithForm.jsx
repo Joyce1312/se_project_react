@@ -6,6 +6,7 @@ function ModalWithForm({
   title,
   activeModal,
   handleCloseClick,
+  onSubmit,
 }) {
   return (
     <>
@@ -22,7 +23,11 @@ function ModalWithForm({
             type="button"
             aria-label="close button"
           ></button>
-          <form className="modal__form" id="add-garment-form">
+          <form
+            onSubmit={onSubmit}
+            className="modal__form"
+            id="add-garment-form"
+          >
             {children}
             <button
               type="submit"
