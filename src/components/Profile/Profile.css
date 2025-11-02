@@ -2,4 +2,5 @@
   display: flex;
   justify-content: space-between;
   padding: 19px 0 0;
+  gap: 116px;
 }

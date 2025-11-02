@@ -28,6 +28,11 @@
   display: flex;
 }
 
+.header__mobile-menu a {
+  text-decoration: none;
+  color: #000;
+}
+
 .header__close-btn {
   display: none;
 }
