@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import { coordinates, APIkey } from "../../utils/constants.js";
 import Header from "../Header/Header.jsx";
@@ -56,7 +57,18 @@ function App() {
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
         >
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-          <Main weatherData={weatherData} handleCardClick={handleCardClick} />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  weatherData={weatherData}
+                  handleCardClick={handleCardClick}
+                />
+              }
+            />
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
         </CurrentTemperatureUnitContext.Provider>
         <Footer />
       </div>
