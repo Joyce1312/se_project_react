@@ -5,7 +5,7 @@ import ClothesSection from "../ClothesSection/ClothesSection";
 function Profile() {
   return (
     <>
-      <section>
+      <section className="profile">
         <SideBar />
         <ClothesSection />
       </section>
