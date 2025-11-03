@@ -13,4 +13,23 @@ const getItems = () => {
   }).then(handleServerResponse);
 };
 
-export { getItems };
+const addItem = ({ name, imageUrl, weather }) => {
+  return fetch(`${baseUrl}/items`, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({
+      name,
+      imageUrl,
+      weather,
+    }),
+  }).then(handleServerResponse);
+};
+
+const removeItem = (itemID) => {
+  return fetch(`${baseUrl}/items/${itemID}`, {
+    method: "DELETE",
+    headers: headers,
+  }).then(handleServerResponse);
+};
+
+export { getItems, addItem, removeItem };

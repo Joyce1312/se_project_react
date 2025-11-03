@@ -4,8 +4,8 @@ import { useForm } from "../../hooks/useForm";
 function AddItemModal({ activeModal, handleCloseClick, onAddItem }) {
   const defaultValues = {
     name: "",
-    link: "",
-    weatherType: "",
+    imageUrl: "",
+    weather: "",
   };
   const { values, handleChange, handleReset } = useForm(defaultValues);
 
@@ -42,12 +42,12 @@ function AddItemModal({ activeModal, handleCloseClick, onAddItem }) {
           Image
           <input
             type="url"
-            name="link"
+            name="imageUrl"
             className="modal__input"
             id="image-input"
             placeholder="Image URL"
             required
-            value={values.link}
+            value={values.imageUrl}
             onChange={handleChange}
           />
         </label>
@@ -59,9 +59,9 @@ function AddItemModal({ activeModal, handleCloseClick, onAddItem }) {
               type="radio"
               className="modal__radio-input"
               id="hot"
-              name="weatherType"
+              name="weather"
               value="hot"
-              checked={values.weatherType === "hot"}
+              checked={values.weather === "hot"}
               onChange={handleChange}
             />
             Hot
@@ -74,9 +74,9 @@ function AddItemModal({ activeModal, handleCloseClick, onAddItem }) {
               type="radio"
               className="modal__radio-input"
               id="warm"
-              name="weatherType"
+              name="weather"
               value="warm"
-              checked={values.weatherType === "warm"}
+              checked={values.weather === "warm"}
               onChange={handleChange}
             />
             Warm
@@ -89,9 +89,9 @@ function AddItemModal({ activeModal, handleCloseClick, onAddItem }) {
               type="radio"
               className="modal__radio-input"
               id="cold"
-              name="weatherType"
+              name="weather"
               value="cold"
-              checked={values.weatherType === "cold"}
+              checked={values.weather === "cold"}
               onChange={handleChange}
             />
             Cold
