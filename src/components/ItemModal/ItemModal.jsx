@@ -1,6 +1,11 @@
 import "./ItemModal.css";
 
-function ItemModal({ activeModal, card, handleCloseClick, handleDeleteClick }) {
+function ItemModal({
+  activeModal,
+  card,
+  handleCloseClick,
+  openConfirmationModal,
+}) {
   return (
     <div
       className={`modal modal_type_preview ${
@@ -14,12 +19,12 @@ function ItemModal({ activeModal, card, handleCloseClick, handleDeleteClick }) {
           aria-label="Close Preview Button"
           type="button"
         ></button>
-        <img src={card.link} alt={card.name} className="modal__image" />
+        <img src={card.imageUrl} alt={card.name} className="modal__image" />
         <div className="modal__footer">
           <div className="modal__footer-row">
             <h2 className="modal__caption">{card.name}</h2>
             <button
-              onClick={handleDeleteClick}
+              onClick={openConfirmationModal}
               className="modal__del-btn"
               type="button"
               aria-label="delete item button"

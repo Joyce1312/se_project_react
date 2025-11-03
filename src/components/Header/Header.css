@@ -28,11 +28,6 @@
   display: flex;
 }
 
-.header__mobile-menu a {
-  text-decoration: none;
-  color: #000;
-}
-
 .header__close-btn {
   display: none;
 }
@@ -45,6 +40,11 @@
   padding: 0;
   border: none;
   background-color: transparent;
+}
+
+.header__nav-link {
+  text-decoration: none;
+  color: #000;
 }
 
 .header__user-container {
