@@ -7,6 +7,7 @@ import Footer from "../Footer/Footer.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import Profile from "../Profile/Profile.jsx";
+import DeleteModal from "../DeleteModal/DeleteModal.jsx";
 import { coordinates, APIkey } from "../../utils/constants.js";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { defaultClothingItems } from "../../utils/constants";
@@ -32,6 +33,11 @@ function App() {
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
+  };
+
+  const handleDeleteClick = (card) => {
+    setActiveModal("delete-card");
+    setSelectedCard(card);
   };
 
   const closeActiveModal = () => {
@@ -108,6 +114,11 @@ function App() {
       <ItemModal
         activeModal={activeModal}
         card={selectedCard}
+        handleCloseClick={closeActiveModal}
+        handleDeleteClick={handleDeleteClick}
+      />
+      <DeleteModal
+        activeModal={activeModal}
         handleCloseClick={closeActiveModal}
       />
     </div>

@@ -24,15 +24,28 @@
   padding: 20px 32px 32px;
 }
 
+.modal__footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal__del-btn {
+  border: none;
+  background: url(../../assets/delete-item.svg) no-repeat center / 98px 13px;
+  width: 98px;
+  height: 13px;
+}
+
 .modal__caption {
-  margin: 0 0 12px;
+  margin: 0;
   font-weight: 700;
   font-size: 20px;
   line-height: 1.2;
 }
 
 .modal__weather {
-  margin: 0;
+  margin: 12px 0 0;
   font-weight: 700;
   font-size: 20px;
   line-height: 1.2;
