@@ -24,7 +24,7 @@ function ItemModal({
           <div className="modal__footer-row">
             <h2 className="modal__caption">{card.name}</h2>
             <button
-              onClick={openConfirmationModal}
+              onClick={() => openConfirmationModal(card)}
               className="modal__del-btn"
               type="button"
               aria-label="delete item button"

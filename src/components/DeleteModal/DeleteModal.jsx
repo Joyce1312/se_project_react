@@ -1,6 +1,9 @@
 import "./DeleteModal.css";
 
-function DeleteModal({ activeModal, handleCloseClick }) {
+function DeleteModal({ activeModal, handleCloseClick, handleCardDelete }) {
+  //   const handleDeleteClick = () => {
+  //     onCardClick(item);
+  //   };
   return (
     <div
       className={`modal modal_type_delete ${
@@ -19,6 +22,7 @@ function DeleteModal({ activeModal, handleCloseClick }) {
           <span className="modal__subtitle">This action is irreversible.</span>
         </p>
         <button
+          onClick={handleCardDelete}
           className="modal__confirm-del-btn"
           type="button"
           aria-label="Confirm delete item"

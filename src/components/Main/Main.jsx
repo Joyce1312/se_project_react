@@ -27,7 +27,8 @@ function Main({ weatherData, handleCardClick, clothingItems }) {
                   onCardClick={handleCardClick}
                 />
               );
-            })}
+            })
+            .reverse()}
         </ul>
       </section>
     </main>

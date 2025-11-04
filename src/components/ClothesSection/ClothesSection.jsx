@@ -17,16 +17,17 @@ function ClothesSection({ clothingItems, handleCardClick, handleAddClick }) {
           </button>
         </div>
         <ul className="clothes-section__items">
-          {/* {console.log("clothingItems:", clothingItems)} */}
-          {clothingItems.map((item) => {
-            return (
-              <ItemCard
-                key={item._id}
-                item={item}
-                onCardClick={handleCardClick}
-              />
-            );
-          })}
+          {clothingItems
+            .map((item) => {
+              return (
+                <ItemCard
+                  key={item._id}
+                  item={item}
+                  onCardClick={handleCardClick}
+                />
+              );
+            })
+            .reverse()}
         </ul>
       </div>
     </>

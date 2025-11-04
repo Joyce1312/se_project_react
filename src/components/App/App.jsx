@@ -10,7 +10,7 @@ import Profile from "../Profile/Profile.jsx";
 import DeleteModal from "../DeleteModal/DeleteModal.jsx";
 import { coordinates, APIkey } from "../../utils/constants.js";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
-import { addItem, getItems } from "../../utils/api.js";
+import { addItem, getItems, removeItem } from "../../utils/api.js";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
 
 function App() {
@@ -69,7 +69,7 @@ function App() {
     const newCardData = {
       name: inputValues.name,
       imageUrl: inputValues.imageUrl,
-      weather: inputValues.weatherType,
+      weather: inputValues.weather,
     };
     addItem(newCardData)
       .then((data) => {
@@ -79,6 +79,19 @@ function App() {
           imageUrl: "",
           weather: "",
         });
+        closeActiveModal();
+      })
+      .catch(console.error);
+  };
+
+  const handleCardDelete = () => {
+    removeItem(selectedCard._id)
+      .then(() => {
+        setClothingItems(
+          clothingItems.filter((item) => {
+            return item._id !== selectedCard._id;
+          })
+        );
         closeActiveModal();
       })
       .catch(console.error);
@@ -130,6 +143,7 @@ function App() {
       <DeleteModal
         activeModal={activeModal}
         handleCloseClick={closeActiveModal}
+        handleCardDelete={handleCardDelete}
       />
     </div>
   );
