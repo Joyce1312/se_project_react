@@ -73,7 +73,7 @@ function App() {
     };
     addItem(newCardData)
       .then((data) => {
-        setClothingItems([data, ...clothingItems]);
+        setClothingItems([...clothingItems, data]);
         handleReset({
           name: "",
           imageUrl: "",
