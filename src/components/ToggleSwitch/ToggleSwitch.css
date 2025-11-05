@@ -47,3 +47,14 @@
 .toggle-switch__text_C {
   right: 9px;
 }
+
+@media screen and (max-width: 627px) {
+  .toggle-switch {
+    display: none;
+  }
+
+  .toggle-switch_mobile {
+    display: block;
+    margin: 24px 0 0;
+  }
+}

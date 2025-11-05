@@ -29,9 +29,18 @@
   list-style-type: none;
   display: grid;
   grid-template-columns: repeat(auto-fit, 325px);
-  grid-template-rows: repeat(auto-fit, 325px);
   gap: 20px;
-  justify-content: center;
   padding: 0;
   margin: 0;
+}
+
+@media screen and (max-width: 627px) {
+  .clothes-section__row {
+    justify-content: space-between;
+  }
+
+  .clothes-section__items {
+    grid-template-columns: repeat(auto-fit, 164px);
+    justify-content: center;
+  }
 }

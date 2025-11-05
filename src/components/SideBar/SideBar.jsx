@@ -9,7 +9,13 @@ function SideBar() {
     <>
       <aside className="sidebar">
         <div className="sidebar__user-container">
-          <p className="sidebar__username">Terrence Tegegne</p>
+          <div className="sidebar__user-info">
+            <p className="sidebar__username">Terrence Tegegne</p>
+            <button className="sidebar__change-data-btn">
+              Change profile data
+            </button>
+            <button className="sidebar__logout-btn">Log out</button>
+          </div>
           <img
             src={avatar}
             alt="Terrence Tegegne"

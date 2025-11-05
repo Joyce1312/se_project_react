@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import "./ToggleSwitch.css";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
-export default function ToggleSwitch() {
+export default function ToggleSwitch({ isMobileMenuOpened }) {
   const [checked, setChecked] = useState(false);
   const { handleToggleSwitchChange, currentTemperatureUnit } = useContext(
     CurrentTemperatureUnitContext
@@ -16,7 +16,12 @@ export default function ToggleSwitch() {
     <>
       <label
         htmlFor="toggle"
-        className={`toggle-switch ${checked ? "toggle-switch_active" : ""}`}
+        className={`toggle-switch ${checked ? "toggle-switch_active" : ""} ${
+          isMobileMenuOpened ? "toggle-switch_mobile" : ""
+        }`}
+        // {`header__add-clothes-btn ${
+        //     isMobileMenuOpened ? "header__add-clothes-btn_active" : ""
+        //   }`}
       >
         <input
           type="checkbox"

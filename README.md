@@ -1,6 +1,6 @@
 # Weather Wardrobe
 
-Weather Wardrobe is a responsive React + Vite web application that recommends clothing items based on the current weather. The app dynamically displays temperature in °F, filters clothing items by weather type, and lets users view and add items through modals.
+Weather Wardrobe is a responsive React + Vite web application that recommends clothing items based on the current weather. The app dynamically displays temperature in °F/°C, filters clothing items by weather type, and lets users view, add, and delete items through interactive modals.
 
 ---
 
@@ -10,10 +10,11 @@ Weather Wardrobe simulates a smart clothing-recommendation experience. It combin
 
 Users can:
 
-- View the current temperature and weather conditions (°F).
+- View the current temperature and weather conditions (°F/°C).
 - See recommended clothing items filtered by weather type (hot, warm, cold).
 - Open an item modal to preview an image and description.
 - Add new items through the Add Clothes form modal.
+- Delete items through the delete item form modal.
 - Navigate between desktop and mobile views with a responsive header and mobile menu toggle.
 
 ---
@@ -60,8 +61,15 @@ The app connects to a weather API to fetch live weather data: `https://openweath
 
 ## Design Prototype
 
-This project was built based on a Figma design. You can view the original prototype here:
-[View the Figma Design](https://www.figma.com/design/F03bTb81Pw8IDPj5Y9rc5i/Sprint-10-Project--WTWR?node-id=311-433&p=f&t=w5G5AnhDa0BVgXXM-0)
+Weather Wardrobe was built iteratively across multiple sprints, each introducing new features.:
+
+- **Sprint 10** – Vite setup & ESLint config; app file structure; core components (Header/Main/Footer/ModalWithForm/ItemModal/WeatherCard/ItemCard); fetch OpenWeather (city + temp °F) and show location in header; filter cards by weather from default data; responsive styles with BEM; modals open/close
+
+  - 🎨 [Figma Sprint 10 Design](https://www.figma.com/design/F03bTb81Pw8IDPj5Y9rc5i/Sprint-10-Project--WTWR?node-id=311-433&p=f&t=w5G5AnhDa0BVgXXM-0)
+
+- **Sprint 11** – Temperature unit toggle (°F/°C), React Router setup (/ & /profile), AddItemModal with useForm, delete confirmation modal, and full mock server API integration (GET, POST, DELETE)
+
+  - 🎨 [Figma Sprint 11 Design](https://www.figma.com/design/dQLJwEKasIdspciJAJrCaf/Sprint-11_-WTWR?node-id=311-433&t=XpDngR6SbfDc2hGd-1)
 
 ---
 

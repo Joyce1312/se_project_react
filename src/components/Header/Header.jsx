@@ -40,7 +40,7 @@ function Header({ handleAddClick, weatherData }) {
             isMobileMenuOpened ? "header__close-btn_active" : ""
           }`}
         ></button>
-        <ToggleSwitch />
+        <ToggleSwitch isMobileMenuOpened={isMobileMenuOpened} />
         <button
           onClick={handleAddClick}
           type="button"
