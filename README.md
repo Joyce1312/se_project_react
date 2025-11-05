@@ -6,7 +6,7 @@ Weather Wardrobe is a responsive React + Vite web application that recommends cl
 
 ## Project Pitch Video
 
-Check out [this video](https://drive.google.com/file/d/1Vw2X4f9h4fHGna7FInNywpZJy5Wbkv2Q/view?usp=sharing), where I describe my project.
+Check out [this video](https://drive.google.com/file/d/1o5AX2qeSVEDHHDR5Fna4BoMpqTvJpDC6/view?usp=sharing), where I describe my project.
 
 ## Project Description
 
