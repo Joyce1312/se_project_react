@@ -4,6 +4,10 @@ Weather Wardrobe is a responsive React + Vite web application that recommends cl
 
 ---
 
+## Project Pitch Video
+
+Check out [this video](https://drive.google.com/file/d/1Vw2X4f9h4fHGna7FInNywpZJy5Wbkv2Q/view?usp=sharing), where I describe my project.
+
 ## Project Description
 
 Weather Wardrobe simulates a smart clothing-recommendation experience. It combines live weather data with a personalized wardrobe interface.
