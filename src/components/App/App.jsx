@@ -8,7 +8,7 @@ import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import Profile from "../Profile/Profile.jsx";
 import DeleteModal from "../DeleteModal/DeleteModal.jsx";
-import { coordinates, APIkey } from "../../utils/constants.js";
+import { defaultCoordinates, APIkey } from "../../utils/constants.js";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { addItem, getItems, removeItem } from "../../utils/api.js";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
@@ -50,8 +50,30 @@ function App() {
       : setCurrentTemperatureUnit("F");
   };
 
+  // latitude: 40.784743965856634;
+  // longitude: -73.79662997019948;
+
   useEffect(() => {
-    getWeather(coordinates, APIkey)
+    if (!navigator.geolocation) {
+      console.error("Geolocation is not supported by this browser.");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition((position) => {
+      const userCoordinates = {
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      };
+      //console.log(userCoordinates);
+      getWeather(userCoordinates, APIkey)
+        .then((data) => {
+          const fiterData = filterWeatherData(data);
+          setWeatherData(fiterData);
+        })
+        .catch(console.error);
+    });
+
+    getWeather(defaultCoordinates, APIkey)
       .then((data) => {
         const fiterData = filterWeatherData(data);
         setWeatherData(fiterData);
