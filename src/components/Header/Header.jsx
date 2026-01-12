@@ -5,7 +5,12 @@ import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.svg";
 
-function Header({ handleAddClick, openRegisterModal, weatherData }) {
+function Header({
+  handleAddClick,
+  openRegisterModal,
+  openLoginModal,
+  weatherData,
+}) {
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -50,6 +55,7 @@ function Header({ handleAddClick, openRegisterModal, weatherData }) {
           Sign Up
         </button>
         <button
+          onClick={openLoginModal}
           type="button"
           className="header__login-btn"
           aria-label="Log In Button"

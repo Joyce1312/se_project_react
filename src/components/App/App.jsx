@@ -9,6 +9,7 @@ import ItemModal from "../ItemModal/ItemModal.jsx";
 import Profile from "../Profile/Profile.jsx";
 import DeleteModal from "../DeleteModal/DeleteModal.jsx";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
+import LoginModal from "../LoginModal/LoginModal.jsx";
 import { defaultCoordinates, APIkey } from "../../utils/constants.js";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { addItem, getItems, removeItem } from "../../utils/api.js";
@@ -45,6 +46,10 @@ function App() {
 
   const openRegisterModal = (card) => {
     setActiveModal("register");
+  };
+
+  const openLoginModal = (card) => {
+    setActiveModal("login");
   };
 
   const closeActiveModal = () => {
@@ -137,6 +142,7 @@ function App() {
             handleAddClick={handleAddClick}
             weatherData={weatherData}
             openRegisterModal={openRegisterModal}
+            openLoginModal={openLoginModal}
           />
           <Routes>
             <Route
@@ -181,6 +187,10 @@ function App() {
         handleCardDelete={handleCardDelete}
       />
       <RegisterModal
+        activeModal={activeModal}
+        handleCloseClick={closeActiveModal}
+      />
+      <LoginModal
         activeModal={activeModal}
         handleCloseClick={closeActiveModal}
       />
