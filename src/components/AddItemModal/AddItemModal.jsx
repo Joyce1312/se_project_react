@@ -16,8 +16,10 @@ function AddItemModal({ activeModal, handleCloseClick, onAddItem }) {
   return (
     <>
       <ModalWithForm
-        buttonText="Add garment"
+        buttonTextOne="Add garment"
         title="New garment"
+        modalType="add-garment"
+        formType="add-garment-form"
         activeModal={activeModal}
         handleCloseClick={handleCloseClick}
         onSubmit={handleSubmit}

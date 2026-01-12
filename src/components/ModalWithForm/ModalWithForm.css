@@ -112,8 +112,13 @@
   margin-right: 8px;
 }
 
+.modal__button-container {
+  display: flex;
+  gap: 2px;
+  padding-top: 24px;
+}
+
 .modal__submit {
-  margin-top: 24px;
   padding: 8px 16px;
   border: none;
   background-color: #000;
@@ -128,6 +133,18 @@
 
 .modal__submit:hover {
   background-color: #00000099;
+}
+
+.modal__second-btn {
+  padding: 10px 10px;
+  border: none;
+  background-color: transparent;
+  border-radius: 4px;
+  width: 124px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #00000080;
 }
 
 @media screen and (max-width: 627px) {

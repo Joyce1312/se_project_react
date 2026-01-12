@@ -2,16 +2,19 @@ import "./ModalWithForm.css";
 
 function ModalWithForm({
   children,
-  buttonText,
+  buttonTextOne,
+  buttonTextTwo,
   title,
   activeModal,
   handleCloseClick,
   onSubmit,
+  modalType,
+  formType,
 }) {
   return (
     <div
-      className={`modal modal_type_add-garment ${
-        activeModal === "add-garment" && "modal_opened"
+      className={`modal modal_type_${modalType} ${
+        activeModal === modalType && "modal_opened"
       }`}
     >
       <div className="modal__container modal__container_type_add-garment">
@@ -22,15 +25,26 @@ function ModalWithForm({
           type="button"
           aria-label="close button"
         ></button>
-        <form onSubmit={onSubmit} className="modal__form" id="add-garment-form">
+        <form onSubmit={onSubmit} className="modal__form" id={formType}>
           {children}
-          <button
-            type="submit"
-            aria-label="submit button"
-            className="modal__submit"
-          >
-            {buttonText}
-          </button>
+          <div className="modal__button-container">
+            <button
+              type="submit"
+              aria-label="submit button"
+              className="modal__submit"
+            >
+              {buttonTextOne}
+            </button>
+            {(modalType === "register" || modalType === "login") && (
+              <button
+                type="submit"
+                aria-label={`${formType} button`}
+                className="modal__second-btn"
+              >
+                {buttonTextTwo}
+              </button>
+            )}
+          </div>
         </form>
       </div>
     </div>

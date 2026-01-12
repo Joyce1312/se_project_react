@@ -8,10 +8,12 @@ import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import Profile from "../Profile/Profile.jsx";
 import DeleteModal from "../DeleteModal/DeleteModal.jsx";
+import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import { defaultCoordinates, APIkey } from "../../utils/constants.js";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { addItem, getItems, removeItem } from "../../utils/api.js";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
+// import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -25,6 +27,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+  const [currentUser, setCurrentUser] = useState({});
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -38,6 +41,10 @@ function App() {
   const openConfirmationModal = (card) => {
     setActiveModal("delete-card");
     setSelectedCard(card);
+  };
+
+  const openRegisterModal = (card) => {
+    setActiveModal("register");
   };
 
   const closeActiveModal = () => {
@@ -122,10 +129,15 @@ function App() {
   return (
     <div className="page">
       <div className="page__content">
+        {/* <CurrentUserContext.Provider value={currentUser}> */}
         <CurrentTemperatureUnitContext.Provider
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
         >
-          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+          <Header
+            handleAddClick={handleAddClick}
+            weatherData={weatherData}
+            openRegisterModal={openRegisterModal}
+          />
           <Routes>
             <Route
               path="/"
@@ -149,6 +161,7 @@ function App() {
             />
           </Routes>
         </CurrentTemperatureUnitContext.Provider>
+        {/* </CurrentUserContext.Provider> */}
         <Footer />
       </div>
       <AddItemModal
@@ -166,6 +179,10 @@ function App() {
         activeModal={activeModal}
         handleCloseClick={closeActiveModal}
         handleCardDelete={handleCardDelete}
+      />
+      <RegisterModal
+        activeModal={activeModal}
+        handleCloseClick={closeActiveModal}
       />
     </div>
   );
