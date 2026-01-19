@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Header.css";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.svg";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Header({
   handleAddClick,
@@ -12,6 +13,7 @@ function Header({
   weatherData,
 }) {
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
+  const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpened((menuStatus) => {
@@ -62,30 +64,34 @@ function Header({
         >
           Log In
         </button>
-        <button
-          onClick={handleAddClick}
-          type="button"
-          aria-label="Add Clothes Button"
-          className={`header__add-clothes-btn ${
-            isMobileMenuOpened ? "header__add-clothes-btn_active" : ""
-          }`}
-        >
-          + Add Clothes
-        </button>
-        <NavLink className="header__nav-link" to="/profile">
-          <div
-            className={`header__user-container ${
-              isMobileMenuOpened ? "header__user-container_active" : ""
-            }`}
-          >
-            <p className="header__username">Terrence Tegegne</p>
-            <img
-              src={avatar}
-              alt="Terrence Tegegne"
-              className="header__avatar"
-            />
-          </div>
-        </NavLink>
+        {isLoggedIn == true && (
+          <>
+            <button
+              onClick={handleAddClick}
+              type="button"
+              aria-label="Add Clothes Button"
+              className={`header__add-clothes-btn ${
+                isMobileMenuOpened ? "header__add-clothes-btn_active" : ""
+              }`}
+            >
+              + Add Clothes
+            </button>
+            <NavLink className="header__nav-link" to="/profile">
+              <div
+                className={`header__user-container ${
+                  isMobileMenuOpened ? "header__user-container_active" : ""
+                }`}
+              >
+                <p className="header__username">Terrence Tegegne</p>
+                <img
+                  src={avatar}
+                  alt="Terrence Tegegne"
+                  className="header__avatar"
+                />
+              </div>
+            </NavLink>
+          </>
+        )}
       </div>
       <button
         onClick={toggleMobileMenu}

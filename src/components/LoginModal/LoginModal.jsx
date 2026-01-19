@@ -7,6 +7,7 @@ function LoginModal({ activeModal, handleCloseClick, handleLogin }) {
     password: "",
   };
   const { values, handleChange } = useForm(defaultValues);
+
   function handleSubmit(evt) {
     evt.preventDefault();
     handleLogin(values);

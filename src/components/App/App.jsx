@@ -15,7 +15,7 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { addItem, getItems, removeItem } from "../../utils/api.js";
 import { signUp, signIn, authorize } from "../../utils/auth.js";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
-// import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -156,18 +156,14 @@ function App() {
 
   const handleRegistration = ({ email, password, name, avatar }) => {
     // avatar link: https://images.unsplash.com/photo-1556079337-a837a2d11f04?w=1600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Ym9zdG9ufGVufDB8fDB8fHww
-    //console.log("handleRegi", email);
     signUp({ email, password, name, avatar })
-      .then((data) => {
+      .then(() => {
         closeActiveModal();
-        //console.log(data);
         return signIn({ email, password });
       })
       .then((res) => {
         localStorage.setItem("jwt", res.token);
         getUserData(res.token);
-        // setIsLoggedIn(true);
-        // setCurrentUser({ email, name, avatar });
       })
       .catch(console.error);
   };
@@ -180,52 +176,46 @@ function App() {
         getUserData(res.token);
         closeActiveModal();
       })
-      // .then((user) => {
-      //   console.log("user:", user);
-      //   setIsLoggedIn(true);
-      //   setCurrentUser(user);
-      //   closeActiveModal();
-      // })
       .catch(console.error);
   };
 
   return (
     <div className="page">
       <div className="page__content">
-        {/* <CurrentUserContext.Provider value={currentUser}> */}
-        <CurrentTemperatureUnitContext.Provider
-          value={{ currentTemperatureUnit, handleToggleSwitchChange }}
-        >
-          <Header
-            handleAddClick={handleAddClick}
-            weatherData={weatherData}
-            openRegisterModal={openRegisterModal}
-            openLoginModal={openLoginModal}
-          />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Main
-                  weatherData={weatherData}
-                  handleCardClick={handleCardClick}
-                  clothingItems={clothingItems}
-                />
-              }
+        <CurrentUserContext.Provider value={{ currentUser, isLoggedIn }}>
+          <CurrentTemperatureUnitContext.Provider
+            value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+          >
+            <Header
+              handleAddClick={handleAddClick}
+              weatherData={weatherData}
+              openRegisterModal={openRegisterModal}
+              openLoginModal={openLoginModal}
             />
-            <Route
-              path="/profile"
-              element={
-                <Profile
-                  handleCardClick={handleCardClick}
-                  clothingItems={clothingItems}
-                  handleAddClick={handleAddClick}
-                />
-              }
-            />
-          </Routes>
-        </CurrentTemperatureUnitContext.Provider>
-        {/* </CurrentUserContext.Provider> */}
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Main
+                    weatherData={weatherData}
+                    handleCardClick={handleCardClick}
+                    clothingItems={clothingItems}
+                  />
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <Profile
+                    handleCardClick={handleCardClick}
+                    clothingItems={clothingItems}
+                    handleAddClick={handleAddClick}
+                  />
+                }
+              />
+            </Routes>
+          </CurrentTemperatureUnitContext.Provider>
+        </CurrentUserContext.Provider>
         <Footer />
       </div>
       <AddItemModal
