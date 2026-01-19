@@ -13,6 +13,7 @@ import LoginModal from "../LoginModal/LoginModal.jsx";
 import { defaultCoordinates, APIkey } from "../../utils/constants.js";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { addItem, getItems, removeItem } from "../../utils/api.js";
+import { signUp, signIn, authorize } from "../../utils/auth.js";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
 // import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
 
@@ -29,6 +30,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -65,6 +67,23 @@ function App() {
   // latitude: 40.784743965856634;
   // longitude: -73.79662997019948;
 
+  const getUserData = (token) => {
+    console.log("fire");
+    if (token) {
+      authorize(token)
+        .then((user) => {
+          console.log("auth: ", user);
+          setIsLoggedIn(true);
+          console.log("setting state");
+          setCurrentUser(user);
+        })
+        .catch((err) => {
+          console.error("Token validation failed", err);
+          localStorage.removeItem("jwt");
+        });
+    }
+  };
+
   useEffect(() => {
     if (!navigator.geolocation) {
       console.error("Geolocation is not supported by this browser.");
@@ -97,6 +116,10 @@ function App() {
         setClothingItems(data);
       })
       .catch(console.error);
+
+    const token = localStorage.getItem("jwt");
+
+    getUserData(token);
   }, []);
 
   const onAddItem = (inputValues, handleReset) => {
@@ -124,10 +147,45 @@ function App() {
         setClothingItems(
           clothingItems.filter((item) => {
             return item._id !== selectedCard._id;
-          })
+          }),
         );
         closeActiveModal();
       })
+      .catch(console.error);
+  };
+
+  const handleRegistration = ({ email, password, name, avatar }) => {
+    // avatar link: https://images.unsplash.com/photo-1556079337-a837a2d11f04?w=1600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Ym9zdG9ufGVufDB8fDB8fHww
+    //console.log("handleRegi", email);
+    signUp({ email, password, name, avatar })
+      .then((data) => {
+        closeActiveModal();
+        //console.log(data);
+        return signIn({ email, password });
+      })
+      .then((res) => {
+        localStorage.setItem("jwt", res.token);
+        getUserData(res.token);
+        // setIsLoggedIn(true);
+        // setCurrentUser({ email, name, avatar });
+      })
+      .catch(console.error);
+  };
+
+  const handleLogin = ({ email, password }) => {
+    signIn({ email, password })
+      .then((res) => {
+        localStorage.setItem("jwt", res.token);
+        console.log("res ", res);
+        getUserData(res.token);
+        closeActiveModal();
+      })
+      // .then((user) => {
+      //   console.log("user:", user);
+      //   setIsLoggedIn(true);
+      //   setCurrentUser(user);
+      //   closeActiveModal();
+      // })
       .catch(console.error);
   };
 
@@ -189,10 +247,12 @@ function App() {
       <RegisterModal
         activeModal={activeModal}
         handleCloseClick={closeActiveModal}
+        handleRegistration={handleRegistration}
       />
       <LoginModal
         activeModal={activeModal}
         handleCloseClick={closeActiveModal}
+        handleLogin={handleLogin}
       />
     </div>
   );

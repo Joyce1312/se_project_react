@@ -1,12 +1,16 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm";
 
-function LoginModal({ activeModal, handleCloseClick }) {
+function LoginModal({ activeModal, handleCloseClick, handleLogin }) {
   const defaultValues = {
     email: "",
     password: "",
   };
-  const { values, handleChange, handleReset } = useForm(defaultValues);
+  const { values, handleChange } = useForm(defaultValues);
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    handleLogin(values);
+  }
   return (
     <ModalWithForm
       buttonTextOne="Log in"
@@ -16,6 +20,7 @@ function LoginModal({ activeModal, handleCloseClick }) {
       formType="login-form"
       activeModal={activeModal}
       handleCloseClick={handleCloseClick}
+      onSubmit={handleSubmit}
     >
       <label htmlFor="log-email-input" className="modal__label">
         Email
@@ -26,7 +31,7 @@ function LoginModal({ activeModal, handleCloseClick }) {
           id="log-email-input"
           placeholder="Email"
           required
-          //   value={email}
+          value={values.email}
           onChange={handleChange}
         />
       </label>
@@ -40,7 +45,7 @@ function LoginModal({ activeModal, handleCloseClick }) {
           id="log-password-input"
           placeholder="Passward"
           required
-          //   value={email}
+          value={values.password}
           onChange={handleChange}
         />
       </label>

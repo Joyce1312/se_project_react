@@ -1,14 +1,21 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm";
 
-function RegisterModal({ activeModal, handleCloseClick }) {
+function RegisterModal({ activeModal, handleCloseClick, handleRegistration }) {
   const defaultValues = {
     email: "",
     password: "",
     name: "",
-    avatarUrl: "",
+    avatar: "",
   };
-  const { values, handleChange, handleReset } = useForm(defaultValues);
+  const { values, handleChange } = useForm(defaultValues);
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    //console.log("Form values:", values);
+    handleRegistration(values);
+  }
+
   return (
     <ModalWithForm
       buttonTextOne="Sign Up"
@@ -18,6 +25,7 @@ function RegisterModal({ activeModal, handleCloseClick }) {
       formType="register-form"
       activeModal={activeModal}
       handleCloseClick={handleCloseClick}
+      onSubmit={handleSubmit}
     >
       <label htmlFor="reg-email-input" className="modal__label">
         Email*
@@ -28,7 +36,7 @@ function RegisterModal({ activeModal, handleCloseClick }) {
           id="reg-email-input"
           placeholder="Email"
           required
-          //   value={email}
+          value={values.email}
           onChange={handleChange}
         />
       </label>
@@ -40,9 +48,9 @@ function RegisterModal({ activeModal, handleCloseClick }) {
           name="password"
           className="modal__input"
           id="reg-password-input"
-          placeholder="Passward"
+          placeholder="Password"
           required
-          //   value={email}
+          value={values.password}
           onChange={handleChange}
         />
       </label>
@@ -56,7 +64,7 @@ function RegisterModal({ activeModal, handleCloseClick }) {
           id="reg-name-input"
           placeholder="Name"
           required
-          //   value={values.name}
+          value={values.name}
           onChange={handleChange}
         />
       </label>
@@ -65,12 +73,12 @@ function RegisterModal({ activeModal, handleCloseClick }) {
         Avatar URL*
         <input
           type="url"
-          name="avatarUrl"
+          name="avatar"
           className="modal__input"
           id="avatar-input"
-          placeholder="Avatar URL"
+          placeholder="Avatar"
           required
-          //   value={values.imageUrl}
+          value={values.avatar}
           onChange={handleChange}
         />
       </label>
