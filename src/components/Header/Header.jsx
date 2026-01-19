@@ -48,22 +48,26 @@ function Header({
           }`}
         ></button>
         <ToggleSwitch isMobileMenuOpened={isMobileMenuOpened} />
-        <button
-          onClick={openRegisterModal}
-          type="button"
-          className="header__register-btn"
-          aria-label="Sign Up Button"
-        >
-          Sign Up
-        </button>
-        <button
-          onClick={openLoginModal}
-          type="button"
-          className="header__login-btn"
-          aria-label="Log In Button"
-        >
-          Log In
-        </button>
+        {isLoggedIn == false && (
+          <>
+            <button
+              onClick={openRegisterModal}
+              type="button"
+              className="header__register-btn"
+              aria-label="Sign Up Button"
+            >
+              Sign Up
+            </button>
+            <button
+              onClick={openLoginModal}
+              type="button"
+              className="header__login-btn"
+              aria-label="Log In Button"
+            >
+              Log In
+            </button>
+          </>
+        )}
         {isLoggedIn == true && (
           <>
             <button
@@ -82,12 +86,23 @@ function Header({
                   isMobileMenuOpened ? "header__user-container_active" : ""
                 }`}
               >
-                <p className="header__username">Terrence Tegegne</p>
-                <img
+                <p className="header__username">{currentUser.name}</p>
+                {currentUser.avatar ? (
+                  <img
+                    src={currentUser.avatar}
+                    alt={currentUser.name}
+                    className="header__avatar"
+                  />
+                ) : (
+                  <div className="header__avatar header__avatar-placeholder">
+                    {currentUser.name?.charAt(0)?.toUpperCase()}
+                  </div>
+                )}
+                {/* <img
                   src={avatar}
                   alt="Terrence Tegegne"
                   className="header__avatar"
-                />
+                /> */}
               </div>
             </NavLink>
           </>

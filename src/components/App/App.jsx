@@ -32,6 +32,8 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const token = localStorage.getItem("jwt");
+
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
@@ -117,7 +119,7 @@ function App() {
       })
       .catch(console.error);
 
-    const token = localStorage.getItem("jwt");
+    // const token = localStorage.getItem("jwt");
 
     getUserData(token);
   }, []);
@@ -128,7 +130,7 @@ function App() {
       imageUrl: inputValues.imageUrl,
       weather: inputValues.weather,
     };
-    addItem(newCardData)
+    addItem(token, newCardData)
       .then((data) => {
         setClothingItems([...clothingItems, data]);
         handleReset({
@@ -142,7 +144,7 @@ function App() {
   };
 
   const handleCardDelete = () => {
-    removeItem(selectedCard._id)
+    removeItem(token, selectedCard._id)
       .then(() => {
         setClothingItems(
           clothingItems.filter((item) => {
@@ -181,8 +183,8 @@ function App() {
 
   return (
     <div className="page">
-      <div className="page__content">
-        <CurrentUserContext.Provider value={{ currentUser, isLoggedIn }}>
+      <CurrentUserContext.Provider value={{ currentUser, isLoggedIn }}>
+        <div className="page__content">
           <CurrentTemperatureUnitContext.Provider
             value={{ currentTemperatureUnit, handleToggleSwitchChange }}
           >
@@ -215,35 +217,35 @@ function App() {
               />
             </Routes>
           </CurrentTemperatureUnitContext.Provider>
-        </CurrentUserContext.Provider>
-        <Footer />
-      </div>
-      <AddItemModal
-        activeModal={activeModal}
-        handleCloseClick={closeActiveModal}
-        onAddItem={onAddItem}
-      />
-      <ItemModal
-        activeModal={activeModal}
-        card={selectedCard}
-        handleCloseClick={closeActiveModal}
-        openConfirmationModal={openConfirmationModal}
-      />
-      <DeleteModal
-        activeModal={activeModal}
-        handleCloseClick={closeActiveModal}
-        handleCardDelete={handleCardDelete}
-      />
-      <RegisterModal
-        activeModal={activeModal}
-        handleCloseClick={closeActiveModal}
-        handleRegistration={handleRegistration}
-      />
-      <LoginModal
-        activeModal={activeModal}
-        handleCloseClick={closeActiveModal}
-        handleLogin={handleLogin}
-      />
+          <Footer />
+        </div>
+        <AddItemModal
+          activeModal={activeModal}
+          handleCloseClick={closeActiveModal}
+          onAddItem={onAddItem}
+        />
+        <ItemModal
+          activeModal={activeModal}
+          card={selectedCard}
+          handleCloseClick={closeActiveModal}
+          openConfirmationModal={openConfirmationModal}
+        />
+        <DeleteModal
+          activeModal={activeModal}
+          handleCloseClick={closeActiveModal}
+          handleCardDelete={handleCardDelete}
+        />
+        <RegisterModal
+          activeModal={activeModal}
+          handleCloseClick={closeActiveModal}
+          handleRegistration={handleRegistration}
+        />
+        <LoginModal
+          activeModal={activeModal}
+          handleCloseClick={closeActiveModal}
+          handleLogin={handleLogin}
+        />
+      </CurrentUserContext.Provider>
     </div>
   );
 }

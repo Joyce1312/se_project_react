@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import "./ItemModal.css";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function ItemModal({
   activeModal,
@@ -6,6 +8,10 @@ function ItemModal({
   handleCloseClick,
   openConfirmationModal,
 }) {
+  const { currentUser } = useContext(CurrentUserContext);
+  // Checking if the current user is the owner of the current clothing item
+  const isOwn = card.owner === currentUser._id;
+
   return (
     <div
       className={`modal modal_type_preview ${
@@ -23,12 +29,14 @@ function ItemModal({
         <div className="modal__footer">
           <div className="modal__footer-row">
             <h2 className="modal__caption">{card.name}</h2>
-            <button
-              onClick={() => openConfirmationModal(card)}
-              className="modal__del-btn"
-              type="button"
-              aria-label="delete item button"
-            ></button>
+            {isOwn && (
+              <button
+                onClick={() => openConfirmationModal(card)}
+                className="modal__del-btn"
+                type="button"
+                aria-label="delete item button"
+              ></button>
+            )}
           </div>
           <p className="modal__weather">Weather: {card.weather}</p>
         </div>

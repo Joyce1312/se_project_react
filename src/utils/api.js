@@ -13,10 +13,13 @@ const getItems = () => {
   }).then(handleServerResponse);
 };
 
-const addItem = ({ name, imageUrl, weather }) => {
+const addItem = (token, { name, imageUrl, weather }) => {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
-    headers: headers,
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify({
       name,
       imageUrl,
@@ -25,10 +28,13 @@ const addItem = ({ name, imageUrl, weather }) => {
   }).then(handleServerResponse);
 };
 
-const removeItem = (itemId) => {
+const removeItem = (token, itemId) => {
   return fetch(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
-    headers: headers,
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
   }).then(handleServerResponse);
 };
 
