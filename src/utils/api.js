@@ -37,5 +37,20 @@ const removeItem = (token, itemId) => {
     },
   }).then(handleServerResponse);
 };
+// fetch("http://localhost:3001/items/695b000be6898b2bb71b2ce4/likes", requestOptions)
 
-export { getItems, addItem, removeItem };
+const updateUserInfo = (token, { name, avatar }) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name,
+      avatar,
+    }),
+  }).then(handleServerResponse);
+};
+
+export { getItems, addItem, removeItem, updateUserInfo };

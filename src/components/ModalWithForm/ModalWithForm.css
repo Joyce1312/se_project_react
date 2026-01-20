@@ -1,7 +1,9 @@
 .modal {
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s linear 0.5s, opacity 0.5s linear;
+  transition:
+    visibility 0s linear 0.5s,
+    opacity 0.5s linear;
   position: fixed;
   top: 0;
   left: 0;
@@ -129,6 +131,7 @@
   line-height: 1.25;
   color: #fff;
   transition: background-color 0.3s ease;
+  white-space: nowrap;
 }
 
 .modal__submit:hover {

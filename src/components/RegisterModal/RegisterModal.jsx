@@ -69,13 +69,13 @@ function RegisterModal({ activeModal, handleCloseClick, handleRegistration }) {
         />
       </label>
       <span className="modal__error" id="reg-name-input-error"></span>
-      <label htmlFor="avatar-input" className="modal__label">
+      <label htmlFor="reg-avatar-input" className="modal__label">
         Avatar URL*
         <input
           type="url"
           name="avatar"
           className="modal__input"
-          id="avatar-input"
+          id="reg-avatar-input"
           placeholder="Avatar"
           required
           value={values.avatar}

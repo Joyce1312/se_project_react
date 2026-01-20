@@ -10,12 +10,19 @@ import Profile from "../Profile/Profile.jsx";
 import DeleteModal from "../DeleteModal/DeleteModal.jsx";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
+import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 import { defaultCoordinates, APIkey } from "../../utils/constants.js";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
-import { addItem, getItems, removeItem } from "../../utils/api.js";
+import {
+  addItem,
+  getItems,
+  removeItem,
+  updateUserInfo,
+} from "../../utils/api.js";
 import { signUp, signIn, authorize } from "../../utils/auth.js";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -54,6 +61,10 @@ function App() {
 
   const openLoginModal = (card) => {
     setActiveModal("login");
+  };
+
+  const openEditProfileModal = (card) => {
+    setActiveModal("edit-profile");
   };
 
   const closeActiveModal = () => {
@@ -119,8 +130,6 @@ function App() {
       })
       .catch(console.error);
 
-    // const token = localStorage.getItem("jwt");
-
     getUserData(token);
   }, []);
 
@@ -151,6 +160,15 @@ function App() {
             return item._id !== selectedCard._id;
           }),
         );
+        closeActiveModal();
+      })
+      .catch(console.error);
+  };
+
+  const updateProfile = (inputValues) => {
+    updateUserInfo(token, inputValues)
+      .then((updatedUser) => {
+        setCurrentUser(updatedUser);
         closeActiveModal();
       })
       .catch(console.error);
@@ -208,11 +226,14 @@ function App() {
               <Route
                 path="/profile"
                 element={
-                  <Profile
-                    handleCardClick={handleCardClick}
-                    clothingItems={clothingItems}
-                    handleAddClick={handleAddClick}
-                  />
+                  <ProtectedRoute>
+                    <Profile
+                      handleCardClick={handleCardClick}
+                      clothingItems={clothingItems}
+                      handleAddClick={handleAddClick}
+                      openEditProfileModal={openEditProfileModal}
+                    />
+                  </ProtectedRoute>
                 }
               />
             </Routes>
@@ -244,6 +265,11 @@ function App() {
           activeModal={activeModal}
           handleCloseClick={closeActiveModal}
           handleLogin={handleLogin}
+        />
+        <EditProfileModal
+          activeModal={activeModal}
+          handleCloseClick={closeActiveModal}
+          updateProfile={updateProfile}
         />
       </CurrentUserContext.Provider>
     </div>
