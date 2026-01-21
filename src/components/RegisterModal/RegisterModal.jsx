@@ -8,12 +8,11 @@ function RegisterModal({ activeModal, handleCloseClick, handleRegistration }) {
     name: "",
     avatar: "",
   };
-  const { values, handleChange } = useForm(defaultValues);
+  const { values, handleChange, handleReset } = useForm(defaultValues);
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    //console.log("Form values:", values);
-    handleRegistration(values);
+    handleRegistration(values, handleReset);
   }
 
   return (

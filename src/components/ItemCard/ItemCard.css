@@ -9,10 +9,17 @@
   justify-content: center;
 }
 
-.card__title {
-  margin: 0;
+.card__title-container {
   position: absolute;
   top: 15px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.card__title {
+  margin: 0;
   background-color: #fff;
   padding: 2px 12px;
   border-radius: 4px;
@@ -21,6 +28,18 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 1.25;
+}
+
+.card__like-btn {
+  background: transparent url("../../assets/like-btn.svg") no-repeat center /
+    18px 15px;
+  width: 18px;
+  height: 15px;
+  border: none;
+}
+
+.card__like-btn_active {
+  background-image: url("../../assets/liked-btn.svg");
 }
 
 .card__image {

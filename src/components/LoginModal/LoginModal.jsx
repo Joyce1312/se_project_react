@@ -6,11 +6,11 @@ function LoginModal({ activeModal, handleCloseClick, handleLogin }) {
     email: "",
     password: "",
   };
-  const { values, handleChange } = useForm(defaultValues);
+  const { values, handleChange, handleReset } = useForm(defaultValues);
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    handleLogin(values);
+    handleLogin(values, handleReset);
   }
   return (
     <ModalWithForm

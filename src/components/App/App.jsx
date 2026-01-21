@@ -17,6 +17,8 @@ import {
   addItem,
   getItems,
   removeItem,
+  likeItem,
+  dislikeItem,
   updateUserInfo,
 } from "../../utils/api.js";
 import { signUp, signIn, authorize } from "../../utils/auth.js";
@@ -81,13 +83,10 @@ function App() {
   // longitude: -73.79662997019948;
 
   const getUserData = (token) => {
-    console.log("fire");
     if (token) {
       authorize(token)
         .then((user) => {
-          console.log("auth: ", user);
           setIsLoggedIn(true);
-          console.log("setting state");
           setCurrentUser(user);
         })
         .catch((err) => {
@@ -174,10 +173,43 @@ function App() {
       .catch(console.error);
   };
 
-  const handleRegistration = ({ email, password, name, avatar }) => {
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+    // Check if this card is not currently liked
+    !isLiked
+      ? // if so, send a request to add the user's id to the card's likes array
+        // the first argument is the card's id
+        likeItem(token, id)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item)),
+            );
+          })
+          .catch(console.error)
+      : // if not, send a request to remove the user's id from the card's likes array
+        // the first argument is the card's id
+        dislikeItem(token, id)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item)),
+            );
+          })
+          .catch(console.error);
+  };
+
+  const handleRegistration = (
+    { email, password, name, avatar },
+    handleReset,
+  ) => {
     // avatar link: https://images.unsplash.com/photo-1556079337-a837a2d11f04?w=1600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Ym9zdG9ufGVufDB8fDB8fHww
     signUp({ email, password, name, avatar })
       .then(() => {
+        handleReset({
+          email: "",
+          password: "",
+          name: "",
+          avatar: "",
+        });
         closeActiveModal();
         return signIn({ email, password });
       })
@@ -188,12 +220,15 @@ function App() {
       .catch(console.error);
   };
 
-  const handleLogin = ({ email, password }) => {
+  const handleLogin = ({ email, password }, handleReset) => {
     signIn({ email, password })
       .then((res) => {
         localStorage.setItem("jwt", res.token);
-        console.log("res ", res);
         getUserData(res.token);
+        handleReset({
+          email: "",
+          password: "",
+        });
         closeActiveModal();
       })
       .catch(console.error);
@@ -220,6 +255,7 @@ function App() {
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
+                    onCardLike={handleCardLike}
                   />
                 }
               />

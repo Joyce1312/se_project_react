@@ -37,6 +37,27 @@ const removeItem = (token, itemId) => {
     },
   }).then(handleServerResponse);
 };
+
+const likeItem = (token, itemId) => {
+  return fetch(`${baseUrl}/items/${itemId}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(handleServerResponse);
+};
+
+const dislikeItem = (token, itemId) => {
+  return fetch(`${baseUrl}/items/${itemId}/likes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(handleServerResponse);
+};
+
 // fetch("http://localhost:3001/items/695b000be6898b2bb71b2ce4/likes", requestOptions)
 
 const updateUserInfo = (token, { name, avatar }) => {
@@ -53,4 +74,4 @@ const updateUserInfo = (token, { name, avatar }) => {
   }).then(handleServerResponse);
 };
 
-export { getItems, addItem, removeItem, updateUserInfo };
+export { getItems, addItem, removeItem, likeItem, dislikeItem, updateUserInfo };

@@ -8,7 +8,6 @@ const handleServerResponse = (res) => {
 };
 
 const signUp = ({ email, password, name, avatar }) => {
-  //console.log("Sending data:", { email, password, name, avatar });
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: headers,

@@ -5,12 +5,10 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function EditProfileModal({ activeModal, handleCloseClick, updateProfile }) {
   const { currentUser } = useContext(CurrentUserContext);
-  console.log("Current user data:", currentUser);
   const defaultValues = {
     name: currentUser?.name || "",
     avatar: currentUser?.avatar || "",
   };
-  console.log("default:", defaultValues);
   const { values, handleChange, setValues } = useForm(defaultValues);
   useEffect(() => {
     if (currentUser) {
@@ -20,7 +18,6 @@ function EditProfileModal({ activeModal, handleCloseClick, updateProfile }) {
       });
     }
   }, [currentUser]);
-  console.log("Initial values from useForm:", values);
 
   function handleSubmit(evt) {
     evt.preventDefault();
