@@ -7,11 +7,17 @@ function Profile({
   clothingItems,
   handleAddClick,
   openEditProfileModal,
+  isMobileMenuOpened,
+  toggleMobileMenu,
 }) {
   return (
     <>
       <section className="profile">
-        <SideBar openEditProfileModal={openEditProfileModal} />
+        <SideBar
+          openEditProfileModal={openEditProfileModal}
+          isMobileMenuOpened={isMobileMenuOpened}
+          toggleMobileMenu={toggleMobileMenu}
+        />
         <ClothesSection
           handleCardClick={handleCardClick}
           clothingItems={clothingItems}

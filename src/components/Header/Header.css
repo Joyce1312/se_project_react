@@ -152,6 +152,23 @@
     padding: 0;
   }
 
+  .header__register-btn {
+    margin: 5px 0 0 0;
+    display: none;
+  }
+
+  .header__login-btn {
+    display: none;
+  }
+
+  .header__register-btn_active {
+    display: block;
+  }
+
+  .header__login-btn_active {
+    display: block;
+  }
+
   .header__add-clothes-btn {
     display: none;
     margin: 0;

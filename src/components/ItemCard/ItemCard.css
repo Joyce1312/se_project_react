@@ -54,7 +54,7 @@
     height: 164px;
   }
 
-  .card__title {
+  .card__title-container {
     top: 7px;
   }
 }

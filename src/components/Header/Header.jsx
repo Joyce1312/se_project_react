@@ -53,7 +53,9 @@ function Header({
             <button
               onClick={openRegisterModal}
               type="button"
-              className="header__register-btn"
+              className={`header__register-btn ${
+                isMobileMenuOpened ? "header__register-btn_active" : ""
+              }`}
               aria-label="Sign Up Button"
             >
               Sign Up
@@ -61,7 +63,9 @@ function Header({
             <button
               onClick={openLoginModal}
               type="button"
-              className="header__login-btn"
+              className={`header__login-btn ${
+                isMobileMenuOpened ? "header__login-btn_active" : ""
+              }`}
               aria-label="Log In Button"
             >
               Log In

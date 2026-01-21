@@ -19,7 +19,7 @@
   white-space: nowrap;
 }
 
-sidebar__btn-container {
+.sidebar__btn-container {
   display: flex;
 }
 
@@ -28,7 +28,6 @@ sidebar__btn-container {
   background: transparent;
   padding: 0;
   margin: 24px 0 8px 0;
-  /* width: fit-content; */
   font-weight: 700;
   font-size: 20px;
   line-height: 1;
@@ -41,11 +40,18 @@ sidebar__btn-container {
   border: none;
   background: transparent;
   padding: 0;
-  /* width: fit-content; */
   font-weight: 700;
   font-size: 20px;
   line-height: 1;
   color: #000;
+  display: block;
+}
+
+.sidebar__btn-containter_mobile {
+  display: none;
+}
+
+.sidebar__btn-containter_desktop {
   display: block;
 }
 
@@ -56,11 +62,16 @@ sidebar__btn-container {
   border: 1px solid #00000080;
 }
 
+.sidebar__avatar-placeholder {
+  background: #00000033;
+}
+
 @media screen and (max-width: 627px) {
   .sidebar {
     padding: 20px 0;
     border-bottom: 1px solid #0000004d;
     border-top: 1px solid #0000004d;
+    position: relative;
   }
 
   .sidebar__user-container {
@@ -73,13 +84,19 @@ sidebar__btn-container {
     color: #00000099;
     font-weight: 500;
     width: fit-content;
-    /* display: block; */
   }
 
   .sidebar__logout-btn {
-    /* display: block; */
     width: fit-content;
     font-weight: 500;
     color: #00000099;
+  }
+
+  .sidebar__btn-containter_mobile {
+    display: block;
+  }
+
+  .sidebar__btn-containter_desktop {
+    display: none;
   }
 }

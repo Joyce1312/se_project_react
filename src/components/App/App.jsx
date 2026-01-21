@@ -38,6 +38,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+  const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -81,6 +82,12 @@ function App() {
 
   // latitude: 40.784743965856634;
   // longitude: -73.79662997019948;
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpened((menuStatus) => {
+      return !menuStatus;
+    });
+  };
 
   const getUserData = (token) => {
     if (token) {
@@ -236,7 +243,9 @@ function App() {
 
   return (
     <div className="page">
-      <CurrentUserContext.Provider value={{ currentUser, isLoggedIn }}>
+      <CurrentUserContext.Provider
+        value={{ currentUser, setCurrentUser, isLoggedIn, setIsLoggedIn }}
+      >
         <div className="page__content">
           <CurrentTemperatureUnitContext.Provider
             value={{ currentTemperatureUnit, handleToggleSwitchChange }}
