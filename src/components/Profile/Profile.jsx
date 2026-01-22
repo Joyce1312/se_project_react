@@ -9,6 +9,7 @@ function Profile({
   openEditProfileModal,
   isMobileMenuOpened,
   toggleMobileMenu,
+  onCardLike,
 }) {
   return (
     <>
@@ -22,6 +23,7 @@ function Profile({
           handleCardClick={handleCardClick}
           clothingItems={clothingItems}
           handleAddClick={handleAddClick}
+          onCardLike={onCardLike}
         />
       </section>
     </>

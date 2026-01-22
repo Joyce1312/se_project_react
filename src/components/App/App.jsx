@@ -277,6 +277,7 @@ function App() {
                       clothingItems={clothingItems}
                       handleAddClick={handleAddClick}
                       openEditProfileModal={openEditProfileModal}
+                      onCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }
