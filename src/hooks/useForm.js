@@ -10,6 +10,8 @@ function useForm(defaultValues) {
 
   const handleReset = (initialValues) => {
     setValues(initialValues);
+    setErrors({});
+    setIsValid(false);
   };
 
   return { values, handleChange, setValues, handleReset };

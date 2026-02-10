@@ -10,6 +10,7 @@ function ModalWithForm({
   onSubmit,
   modalType,
   formType,
+  onAltButtonClick,
 }) {
   return (
     <div
@@ -37,9 +38,10 @@ function ModalWithForm({
             </button>
             {(modalType === "register" || modalType === "login") && (
               <button
-                type="submit"
+                type="button"
                 aria-label={`${formType} button`}
                 className="modal__second-btn"
+                onClick={onAltButtonClick}
               >
                 {buttonTextTwo}
               </button>

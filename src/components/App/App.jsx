@@ -306,11 +306,13 @@ function App() {
           activeModal={activeModal}
           handleCloseClick={closeActiveModal}
           handleRegistration={handleRegistration}
+          openLoginModal={openLoginModal}
         />
         <LoginModal
           activeModal={activeModal}
           handleCloseClick={closeActiveModal}
           handleLogin={handleLogin}
+          openRegisterModal={openRegisterModal}
         />
         <EditProfileModal
           activeModal={activeModal}
