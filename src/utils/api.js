@@ -1,6 +1,6 @@
 const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://api.WTWR15.raspberryip.com"
+    ? "https://api.wtwr15.raspberryip.com"
     : "http://localhost:3001";
 const headers = {
   "Content-Type": "application/json",
